@@ -1,141 +1,438 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portafolio Docente</title>
+  <title>Portafolio Docente Profesional</title>
 
   <style>
+    :root {
+      --azul: #071827;
+      --azul2: #123456;
+      --naranja: #f59e0b;
+      --blanco: #ffffff;
+      --gris: #dbeafe;
+      --texto: #172033;
+      --glass: rgba(255, 255, 255, 0.58);
+      --borde: rgba(255, 255, 255, 0.75);
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f7fb;
-      color: #1f2937;
-      line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #eef3f8;
+      color: var(--texto);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(29, 78, 137, .35), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(245, 158, 11, .25), transparent 25%),
+        radial-gradient(circle at 70% 80%, rgba(59, 130, 246, .22), transparent 30%),
+        #eef3f8;
+      animation: fondo 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes fondo {
+      from { filter: hue-rotate(0deg); transform: scale(1); }
+      to { filter: hue-rotate(12deg); transform: scale(1.04); }
     }
 
     header {
-      background: linear-gradient(135deg, #0f2a44, #1d4e89);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 90px 22px;
       color: white;
-      padding: 70px 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #020617, #0f2a44, #1d4e89);
     }
 
-    header img {
-      width: 150px;
-      height: 150px;
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,.35));
+      z-index: 1;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(6px);
+      opacity: .38;
+      animation: flotar 8s ease-in-out infinite alternate;
+    }
+
+    .orb1 {
+      width: 420px;
+      height: 420px;
+      background: #60a5fa;
+      top: -120px;
+      right: -100px;
+    }
+
+    .orb2 {
+      width: 300px;
+      height: 300px;
+      background: #f59e0b;
+      bottom: -90px;
+      left: -70px;
+      animation-delay: 2s;
+    }
+
+    @keyframes flotar {
+      from { transform: translateY(0) translateX(0); }
+      to { transform: translateY(35px) translateX(-25px); }
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      max-width: 980px;
+      animation: entrada 1.1s ease forwards;
+    }
+
+    @keyframes entrada {
+      from { opacity: 0; transform: translateY(45px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero img {
+      width: 178px;
+      height: 178px;
       object-fit: cover;
       border-radius: 50%;
-      border: 5px solid white;
-      margin-bottom: 20px;
-      background: #ddd;
+      border: 4px solid rgba(255,255,255,.85);
+      box-shadow: 0 25px 80px rgba(0,0,0,.45);
+      margin-bottom: 28px;
+      background: #cbd5e1;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .hero h1 {
+      font-size: clamp(2.6rem, 8vw, 6.4rem);
+      line-height: .95;
+      letter-spacing: -4px;
+      font-weight: 900;
+      margin-bottom: 24px;
     }
 
-    header p {
-      font-size: 1.2rem;
+    .hero p {
+      font-size: clamp(1.1rem, 2.8vw, 1.55rem);
       color: #dbeafe;
-    }
-
-    nav {
-      background: #ffffff;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav a {
-      color: #0f2a44;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: bold;
-    }
-
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-
-    h2 {
-      color: #0f2a44;
-      font-size: 2rem;
-      margin-bottom: 25px;
-      border-left: 6px solid #f59e0b;
-      padding-left: 12px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 14px;
-      background: #ddd;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #e0f2fe;
-      color: #075985;
-      padding: 6px 12px;
-      border-radius: 20px;
-      margin: 5px 5px 0 0;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      background: #0f2a44;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 40px;
+      max-width: 760px;
+      margin: 0 auto 34px;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 15px;
-      background: #f59e0b;
-      color: #111827;
-      padding: 12px 20px;
-      border-radius: 10px;
+      padding: 15px 28px;
+      border-radius: 999px;
+      color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 800;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(18px);
+      transition: .35s ease;
     }
 
-    @media (max-width: 700px) {
-      header h1 {
-        font-size: 2rem;
+    .btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      background: var(--naranja);
+      color: #111827;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 18px;
+      text-align: center;
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(255,255,255,.7);
+      box-shadow: 0 12px 40px rgba(0,0,0,.08);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0f2a44;
+      font-weight: 800;
+      margin: 0 10px;
+      font-size: .94rem;
+    }
+
+    section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 90px 22px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0f2a44;
+      font-size: clamp(2.1rem, 5vw, 3.7rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 42px;
+    }
+
+    h2 span {
+      color: var(--naranja);
+    }
+
+    .glass {
+      background: var(--glass);
+      border: 1px solid var(--borde);
+      border-radius: 32px;
+      padding: 32px;
+      box-shadow: 0 30px 90px rgba(15,42,68,.14);
+      backdrop-filter: blur(24px);
+      transition: .4s ease;
+    }
+
+    .glass:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 45px 110px rgba(15,42,68,.22);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+    }
+
+    .card h3 {
+      color: #0f2a44;
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #3f4f67;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2.7rem;
+      color: #0f2a44;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: #52657f;
+      font-weight: 700;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 920px;
+      margin: auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: linear-gradient(var(--azul2), var(--naranja));
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 20px 35px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 40px;
+      width: 28px;
+      height: 28px;
+      background: var(--naranja);
+      border-radius: 50%;
+      border: 6px solid white;
+      box-shadow: 0 0 0 8px rgba(245,158,11,.2);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot {
+      right: -14px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -14px;
+    }
+
+    .masonry {
+      columns: 3 260px;
+      column-gap: 22px;
+    }
+
+    .masonry img {
+      width: 100%;
+      margin-bottom: 22px;
+      border-radius: 26px;
+      cursor: pointer;
+      break-inside: avoid;
+      background: #cbd5e1;
+      box-shadow: 0 25px 65px rgba(15,42,68,.16);
+      transition: .35s ease;
+    }
+
+    .masonry img:hover {
+      transform: scale(1.025);
+      filter: brightness(1.05);
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 7px 6px 0 0;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: rgba(29,78,137,.10);
+      color: #0f2a44;
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .contacto {
+      text-align: center;
+    }
+
+    footer {
+      background: #020617;
+      color: white;
+      text-align: center;
+      padding: 38px 20px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(55px);
+      transition: 1s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,.88);
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+
+    .modal img {
+      max-width: 94%;
+      max-height: 84vh;
+      border-radius: 26px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+    }
+
+    .modal span {
+      position: absolute;
+      top: 24px;
+      right: 34px;
+      color: white;
+      font-size: 46px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        overflow-x: auto;
+        white-space: nowrap;
       }
 
       nav a {
         display: inline-block;
-        margin: 8px;
+        margin: 0 8px;
+      }
+
+      section {
+        padding: 70px 16px;
+      }
+
+      .glass {
+        border-radius: 26px;
+        padding: 25px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even),
+      .timeline-item:nth-child(odd) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 58px;
+        padding-right: 0;
+      }
+
+      .timeline-item:nth-child(even) .timeline-dot,
+      .timeline-item:nth-child(odd) .timeline-dot {
+        left: 6px;
+        right: auto;
+      }
+
+      .hero img {
+        width: 145px;
+        height: 145px;
       }
     }
   </style>
@@ -143,145 +440,247 @@
 
 <body>
 
-  <header>
-    <img src="foto-docente.jpg" alt="Fotografía del docente">
-    <h1>Nombre del Docente</h1>
-    <p>Docente mexicano comprometido con la innovación educativa</p>
-    <a class="btn" href="#contacto">Contacto</a>
+  <header id="inicio">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="hero" id="hero">
+      <img src="foto-docente.jpg" alt="Fotografía del docente">
+      <h1>Nombre del Docente</h1>
+      <p>Portafolio profesional docente: trayectoria, evidencias, innovación educativa y transformación digital.</p>
+      <a class="btn" href="#presentacion">Explorar portafolio</a>
+    </div>
   </header>
 
   <nav>
+    <a href="#inicio">Inicio</a>
     <a href="#presentacion">Presentación</a>
     <a href="#formacion">Formación</a>
-    <a href="#experiencia">Experiencia</a>
+    <a href="#trayectoria">Trayectoria</a>
     <a href="#evidencias">Evidencias</a>
-    <a href="#proyectos">Proyectos</a>
+    <a href="#galeria">Galería</a>
     <a href="#contacto">Contacto</a>
   </nav>
 
-  <section id="presentacion">
-    <h2>Presentación personal</h2>
-    <div class="card">
+  <section id="presentacion" class="reveal">
+    <h2>Presentación <span>profesional</span></h2>
+    <div class="glass card">
       <p>
-        Soy docente mexicano con vocación de servicio, compromiso social y pasión por la educación.
-        Mi práctica educativa se centra en el aprendizaje significativo, la inclusión, la mejora continua
+        Soy docente mexicano comprometido con la formación integral de niñas, niños y adolescentes.
+        Mi práctica educativa se centra en el aprendizaje significativo, la inclusión, la evaluación formativa
         y el uso responsable de la tecnología para fortalecer los procesos de enseñanza y aprendizaje.
       </p>
-      <br>
-      <p>
-        Este portafolio reúne parte de mi trayectoria profesional, evidencias de trabajo, proyectos
-        educativos y logros alcanzados a lo largo de mi labor docente.
-      </p>
+
+      <div class="stats">
+        <div class="glass stat">
+          <strong data-num="12">0</strong>
+          <span>Años de experiencia</span>
+        </div>
+        <div class="glass stat">
+          <strong data-num="25">0</strong>
+          <span>Cursos y talleres</span>
+        </div>
+        <div class="glass stat">
+          <strong data-num="8">0</strong>
+          <span>Proyectos escolares</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="formacion">
-    <h2>Formación académica</h2>
+  <section id="formacion" class="reveal">
+    <h2>Formación <span>académica</span></h2>
     <div class="grid">
-      <div class="card">
+      <div class="glass card">
         <h3>Licenciatura</h3>
-        <p>Licenciatura en Educación Primaria / Pedagogía / Área correspondiente.</p>
+        <p>Licenciatura en Educación Primaria, Pedagogía o área afín.</p>
       </div>
-      <div class="card">
+      <div class="glass card">
         <h3>Posgrado</h3>
-        <p>Maestría, especialidad o diplomados relacionados con la educación.</p>
+        <p>Maestría, especialidad o diplomados relacionados con educación.</p>
       </div>
-      <div class="card">
-        <h3>Actualización profesional</h3>
-        <p>Cursos, talleres y certificaciones orientadas a la mejora docente.</p>
+      <div class="glass card">
+        <h3>Actualización continua</h3>
+        <p>Cursos, talleres, certificaciones y formación permanente.</p>
       </div>
     </div>
   </section>
 
-  <section id="experiencia">
-    <h2>Experiencia profesional</h2>
-    <div class="card">
-      <h3>Docente frente a grupo</h3>
-      <p>
-        Experiencia en educación básica, planeación didáctica, evaluación formativa,
-        acompañamiento a estudiantes y trabajo colaborativo con la comunidad escolar.
-      </p>
-    </div>
+  <section id="trayectoria" class="reveal">
+    <h2>Timeline <span>profesional</span></h2>
 
-    <div class="card">
-      <h3>Participación institucional</h3>
-      <p>
-        Colaboración en consejos técnicos escolares, proyectos escolares, actividades cívicas,
-        académicas y estrategias para la mejora de los aprendizajes.
-      </p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="glass card">
+          <h3>Inicio docente</h3>
+          <p>Primeras experiencias frente a grupo y construcción de identidad profesional.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="glass card">
+          <h3>Consolidación profesional</h3>
+          <p>Diseño de estrategias didácticas, participación institucional y mejora escolar.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="glass card">
+          <h3>Innovación educativa</h3>
+          <p>Integración de recursos digitales, proyectos escolares y aprendizaje basado en evidencias.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="glass card">
+          <h3>Transformación digital</h3>
+          <p>Uso de inteligencia artificial, portafolios digitales y herramientas tecnológicas para educación.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="evidencias">
-    <h2>Evidencias de trabajo</h2>
+  <section id="evidencias" class="reveal">
+    <h2>Evidencias de <span>trabajo</span></h2>
     <div class="grid">
-      <div class="card">
+      <div class="glass card">
         <h3>Planeaciones didácticas</h3>
-        <p>Diseño de actividades alineadas al contexto escolar y a las necesidades de los alumnos.</p>
+        <p>Actividades contextualizadas, secuencias de aprendizaje y organización pedagógica.</p>
       </div>
-      <div class="card">
+      <div class="glass card">
         <h3>Evaluación formativa</h3>
-        <p>Uso de rúbricas, listas de cotejo, retroalimentación y seguimiento del aprendizaje.</p>
+        <p>Rúbricas, listas de cotejo, retroalimentación y seguimiento del aprendizaje.</p>
       </div>
-      <div class="card">
-        <h3>Trabajo con estudiantes</h3>
-        <p>Evidencias de actividades, productos, proyectos y participación del alumnado.</p>
+      <div class="glass card">
+        <h3>Productos del alumnado</h3>
+        <p>Proyectos, exposiciones, trabajos colaborativos y evidencias de desempeño.</p>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2>Galería de imágenes</h2>
-    <div class="grid gallery">
-      <img src="imagen1.jpg" alt="Evidencia escolar 1">
-      <img src="imagen2.jpg" alt="Evidencia escolar 2">
-      <img src="imagen3.jpg" alt="Evidencia escolar 3">
+  <section id="galeria" class="reveal">
+    <h2>Galería <span>Masonry</span></h2>
+    <div class="masonry">
+      <img src="imagen1.jpg" alt="Evidencia escolar 1" onclick="abrirModal(this.src)">
+      <img src="imagen2.jpg" alt="Evidencia escolar 2" onclick="abrirModal(this.src)">
+      <img src="imagen3.jpg" alt="Evidencia escolar 3" onclick="abrirModal(this.src)">
+      <img src="imagen4.jpg" alt="Evidencia escolar 4" onclick="abrirModal(this.src)">
+      <img src="imagen5.jpg" alt="Evidencia escolar 5" onclick="abrirModal(this.src)">
+      <img src="imagen6.jpg" alt="Evidencia escolar 6" onclick="abrirModal(this.src)">
     </div>
   </section>
 
-  <section>
-    <h2>Constancias y reconocimientos</h2>
-    <div class="card">
-      <p>Espacio para integrar constancias, diplomas, reconocimientos, cursos y participaciones relevantes.</p>
+  <section class="reveal">
+    <h2>Constancias y <span>reconocimientos</span></h2>
+    <div class="glass card">
+      <p>
+        Espacio para integrar constancias, diplomas, certificaciones, reconocimientos,
+        participación en cursos, talleres y procesos de formación continua.
+      </p>
+      <br>
       <span class="tag">Diplomados</span>
       <span class="tag">Cursos</span>
-      <span class="tag">Reconocimientos</span>
       <span class="tag">Certificaciones</span>
+      <span class="tag">Reconocimientos</span>
     </div>
   </section>
 
-  <section id="proyectos">
-    <h2>Proyectos destacados</h2>
+  <section class="reveal">
+    <h2>Proyectos <span>destacados</span></h2>
     <div class="grid">
-      <div class="card">
-        <h3>Proyecto educativo 1</h3>
-        <p>Descripción breve del proyecto, propósito, actividades realizadas y resultados obtenidos.</p>
+      <div class="glass card">
+        <h3>Proyecto de lectura</h3>
+        <p>Fomento del gusto por la lectura mediante estrategias creativas y seguimiento lector.</p>
       </div>
-      <div class="card">
-        <h3>Proyecto educativo 2</h3>
-        <p>Descripción de una experiencia innovadora aplicada en el aula o en la escuela.</p>
+      <div class="glass card">
+        <h3>Convivencia escolar</h3>
+        <p>Acciones para fortalecer el respeto, la participación y la cultura de paz.</p>
       </div>
-      <div class="card">
-        <h3>Proyecto educativo 3</h3>
-        <p>Proyecto relacionado con inclusión, lectura, tecnología, convivencia o mejora escolar.</p>
+      <div class="glass card">
+        <h3>Innovación digital</h3>
+        <p>Uso de herramientas digitales e inteligencia artificial para enriquecer el aprendizaje.</p>
       </div>
     </div>
   </section>
 
-  <section id="contacto">
-    <h2>Información de contacto</h2>
-    <div class="card">
-      <p><strong>Correo:</strong> mesefren@gmail.com</p>
-      <p><strong>Teléfono:</strong> 33 39 52 62 74</p>
-      <p><strong>Escuela:</strong> Supervisión Zona Escolar 110</p>
+  <section id="contacto" class="reveal contacto">
+    <h2>Información de <span>contacto</span></h2>
+    <div class="glass card">
+      <p><strong>Correo:</strong> docente@correo.com</p>
+      <p><strong>Teléfono:</strong> 000 000 0000</p>
+      <p><strong>Escuela:</strong> Nombre de la institución educativa</p>
       <p><strong>Ubicación:</strong> México</p>
     </div>
   </section>
 
   <footer>
     <p>Portafolio profesional docente | México</p>
-    <p>Creado con apoyo de IA</p>
+    <p>Creado con apoyo de Inteligencia Artificial</p>
   </footer>
+
+  <div class="modal" id="modal">
+    <span onclick="cerrarModal()">&times;</span>
+    <img id="modalImg" src="" alt="Imagen ampliada">
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const counters = document.querySelectorAll('[data-num]');
+    let countersStarted = false;
+
+    function revealOnScroll() {
+      reveals.forEach(item => {
+        const top = item.getBoundingClientRect().top;
+        if (top < window.innerHeight - 110) {
+          item.classList.add('active');
+        }
+      });
+
+      const stats = document.querySelector('.stats');
+      if (stats && stats.getBoundingClientRect().top < window.innerHeight - 100 && !countersStarted) {
+        countersStarted = true;
+        counters.forEach(counter => {
+          const target = Number(counter.dataset.num);
+          let current = 0;
+          const speed = Math.max(20, 900 / target);
+
+          const update = setInterval(() => {
+            current++;
+            counter.textContent = current + "+";
+            if (current >= target) clearInterval(update);
+          }, speed);
+        });
+      }
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    window.addEventListener('scroll', () => {
+      const hero = document.getElementById('hero');
+      const y = window.scrollY;
+      hero.style.transform = `translateY(${y * 0.22}px)`;
+      hero.style.opacity = Math.max(1 - y / 720, 0);
+    });
+
+    function abrirModal(src) {
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('modalImg').src = src;
+    }
+
+    function cerrarModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target.id === 'modal') cerrarModal();
+    });
+  </script>
 
 </body>
 </html>
+```
